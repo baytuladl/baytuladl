@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Baytul Adl · House of Justice</title>
+  <style>
+    :root {
+      --maxw: 1000px;
+      --text: #000;
+      --bg: #fff;
+      --muted: #f5f5f5;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      z-index: 10;
+    }
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-bottom 0.2s ease;
+    }
+    nav a.active {
+      border-bottom: 2px solid var(--text);
+      padding-bottom: 2px;
+    }
+    section {
+      padding: 4rem 1.5rem;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 1.25rem; /* consistent vertical spacing */
+      padding: 0 1rem;
+    }
+    .logo {
+      height: 84px;
+      margin: 0;
+    }
+    .slogan {
+      font-size: clamp(1.3rem, 2.2vw, 2.2rem);
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: 0.03em;
+    }
+    .arabic {
+      font-weight: 900;
+      font-size: clamp(3.5rem, 10vw, 12rem);
+      line-height: 1;
+      margin: 0;
+      user-select: none;
+    }
+    .btn {
+      margin-top: 2rem;
+      display: inline-block;
+      padding: 0.9rem 1.3rem;
+      border-radius: 999px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      user-select: none;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+      margin: 0 0 1rem;
+      font-weight: 800;
+    }
+    p {
+      font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+      line-height: 1.75;
+      margin: 0 auto 2rem;
+      max-width: 75ch;
+    }
+    form {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: left;
+      display: grid;
+      gap: 14px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 1rem;
+      border: 1px solid #cfcfcf;
+      border-radius: 10px;
+      outline: none;
+    }
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+    button {
+      justify-self: start;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    small {
+      display: block;
+      margin-top: 0.5rem;
+      color: #333;
+    }
+    @media (max-width: 640px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">BAYTULADL · HOUSE OF JUSTICE</div>
+    <nav>
+      <a id="nav-home" class="active">Home</a>
+      <a id="nav-about">About</a>
+      <a id="nav-events">Events</a>
+      <a id="nav-contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Content container where pages load -->
+  <main id="content">
+    <!-- Default: Home content -->
+    <section id="home" class="hero">
+      <img class="logo" src="logo-placeholder.png" alt="Baytul Adl logo" />
+      <div class="slogan">BUILD. ALLOCATE. DISTRIBUTE.</div>
+      <div class="arabic" lang="ar" dir="rtl">بيت العدل</div>
+      <a class="btn" id="btn-learn-more">Learn more</a>
+    </section>
+  </main>
+
+  <script>
+    const content = document.getElementById('content');
+    const navLinks = {
+      home: document.getElementById('nav-home'),
+      about: document.getElementById('nav-about'),
+      events: document.getElementById('nav-events'),
+      contact: document.getElementById('nav-contact')
+    };
+
+    // Pages content stored as strings
+    const pages = {
+      home: `
+        <section id="home" class="hero">
+          <img class="logo" src="logo-placeholder.png" alt="Baytul Adl logo" />
+          <div class="slogan">BUILD. ALLOCATE. DISTRIBUTE.</div>
+          <div class="arabic" lang="ar" dir="rtl">بيت العدل</div>
+          <a class="btn" id="btn-learn-more">Learn more</a>
+        </section>
+      `,
+      about: `
+        <section id="about">
+          <h1>About Us</h1>
+          <p>
+            Baytul ADL is a collective of strategists, storytellers, developers, and creators committed to reclaiming
+            cultural autonomy, sovereignty, and communal power within the Muslim community. We focus on intentional work
+            that transfers knowledge and builds ethical, lasting infrastructure beyond traditional institutions.
+            Our upcoming hackathon marks the beginning of a larger communal-economy movement, bringing together builders,
+            thinkers, and artists to Build. Allocate. Distribute. We’re not creating just a platform — we’re developing
+            autonomous creative teams rooted in Islamic memory and trust, focused on shared value, Islamic inheritance,
+            and responsibility. By participating, you join a living network designed to nurture identity, foster meaningful
+            connections, and sustain ethical purpose—creating a foundation for cultural infrastructure that endures for generations.
+          </p>
+        </section>
+      `,
+      events: `
+        <section id="events">
+          <h1>Opening Hackathon</h1>
+          <p>
+            Our Opening Hackathon is calling all Muslim creatives, entrepreneurs, and change makers! This is more than just
+            a Hackathon — it’s the official kickoff of a movement to unite, empower, and amplify the next generation of Muslim
+            leaders and business owners dedicated to positively impacting the Ummah. Teams will collaborate on projects that
+            address challenges faced by Muslims and broader marginalized communities. Our goal is to reclaim power for our
+            communities by creating solutions that come from within. We look forward to seeing, meeting, and connecting with
+            all of you. Everyone can contribute—brainstorming, organizing concepts, designing layouts, or presenting the final idea.
+          </p>
+        </section>
+      `,
+      contact: `
+        <section id="contact">
+          <h1>Contact Us</h1>
+          <p>Interested in partnering or sponsoring? Reach out — we’d love to connect.</p>
+
+          <form action="https://formspree.io/f/your-form-id" method="POST">
+            <div class="grid-2">
+              <div>
+                <label for="first">First Name</label>
+                <input id="first" name="first_name" type="text" placeholder="First name" required>
+              </div>
+              <div>
+                <label for="last">Last Name</label>
+                <input id="last" name="last_name" type="text" placeholder="Last name" required>
+              </div>
+            </div>
+            <div>
+              <label for="email">Email <small>(we’ll reply here)</small></label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+            </div>
+
+            <input type="hidden" name="_subject" value="New message from Baytul Adl website">
+            <input type="hidden" name="_captcha" value="false">
+
+            <button type="submit">Send</button>
+          </form>
+        </section>
+      `
+    };
+
+    // Helper to set active nav link
+    function setActive(page) {
+      Object.keys(navLinks).forEach(key => {
+        if (key === page) navLinks[key].classList.add('active');
+        else navLinks[key].classList.remove('active');
+      });
+    }
+
+    // Load page content
+    function loadPage(page) {
+      content.innerHTML = pages[page];
+      setActive(page);
+
+      // If we're on home, add Learn More button event
+      if (page === 'home') {
+        const learnBtn = document.getElementById('btn-learn-more');
+        if (learnBtn) {
+          learnBtn.addEventListener('click', () => {
+            loadPage('about');
+          });
+        }
+      }
+    }
+
+    // Setup nav click handlers
+    Object.entries(navLinks).forEach(([page, link]) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        loadPage(page);
+      });
+    });
+
+    // Initial load
+    loadPage('home');
+  </script>
+</body>
+</html>
+
+
+
